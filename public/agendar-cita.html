@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Agendar Cita - RPM Auto and Service</title>
+    <!-- CSS se conectará después -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Header / Navegación -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>RPM Auto and Service</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/catalogo">Catálogo</a></li>
+                <li><a href="/agendar-cita.html" class="active">Agendar Cita</a></li>
+                <li><a href="/mis-citas">Mis Citas</a></li>
+                <li><a href="/perfil">Mi Perfil</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <span id="userNameDisplay"></span>
+                <button id="logoutBtn" style="display:none;">Cerrar Sesión</button>
+                <a href="/login.html" id="loginLink">Iniciar Sesión</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <section class="agendar-cita-section">
+            <h2>Agendar una Cita</h2>
+            <p>Selecciona el vehículo de tu interés, elige una fecha y hora disponible para visitarnos o concretar la compra.</p>
+
+            <!-- Formulario de agendar cita -->
+            <form id="agendarCitaForm">
+                <!-- Selección de vehículo (catálogo) -->
+                <div class="form-group">
+                    <label for="vehiculoId">Vehículo de interés *</label>
+                    <select id="vehiculoId" name="vehiculoId" required>
+                        <option value="">-- Selecciona un vehículo --</option>
+                        <!-- Los vehículos se cargarán dinámicamente desde el backend -->
+                    </select>
+                    <small>Selecciona el auto que deseas ver o comprar</small>
+                </div>
+
+                <!-- Tipo de cita -->
+                <div class="form-group">
+                    <label for="tipoCita">Tipo de cita *</label>
+                    <select id="tipoCita" name="tipoCita" required>
+                        <option value="">-- Selecciona el tipo --</option>
+                        <option value="visita">Visita al concesionario (ver vehículos)</option>
+                        <option value="compra">Agendar cita para compra</option>
+                    </select>
+                    <small>¿Quieres solo ver el auto o ya decidiste comprarlo?</small>
+                </div>
+
+                <!-- Fecha disponible -->
+                <div class="form-group">
+                    <label for="fecha">Fecha de la cita *</label>
+                    <input type="date" id="fecha" name="fecha" required min="">
+                    <small>Selecciona un día disponible (lunes a viernes, horario comercial)</small>
+                </div>
+
+                <!-- Hora disponible -->
+                <div class="form-group">
+                    <label for="hora">Hora disponible *</label>
+                    <select id="hora" name="hora" required>
+                        <option value="">-- Primero selecciona una fecha --</option>
+                    </select>
+                    <small>Horarios disponibles: 10:00 AM - 6:00 PM</small>
+                </div>
+
+                <!-- Comentarios adicionales -->
+                <div class="form-group">
+                    <label for="comentarios">Comentarios adicionales (opcional)</label>
+                    <textarea id="comentarios" name="comentarios" rows="3" placeholder="Ej: Quiero probar el auto, preguntar sobre financiamiento, etc."></textarea>
+                </div>
+
+                <!-- Datos del cliente (se llenan automático si está logueado) -->
+                <div class="form-group">
+                    <label for="nombreCliente">Tu nombre *</label>
+                    <input type="text" id="nombreCliente" name="nombreCliente" required readonly>
+                </div>
+                <div class="form-group">
+                    <label for="emailCliente">Tu correo electrónico *</label>
+                    <input type="email" id="emailCliente" name="emailCliente" required readonly>
+                </div>
+                <div class="form-group">
+                    <label for="telefonoCliente">Teléfono de contacto *</label>
+                    <input type="tel" id="telefonoCliente" name="telefonoCliente" required placeholder="Ej: 555-1234567">
+                </div>
+
+                <!-- Mensajes de error o éxito -->
+                <div id="mensajeError" class="error-message" style="display:none;"></div>
+                <div id="mensajeExito" class="success-message" style="display:none;"></div>
+
+                <!-- Botón submit -->
+                <button type="submit" id="submitBtn">Agendar Cita</button>
+            </form>
+
+            <!-- Resumen de la cita (opcional) -->
+            <div id="resumenCita" style="display:none;">
+                <h3>Resumen de tu cita</h3>
+                <p id="resumenTexto"></p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 RPM Auto and Service - Todos los derechos reservados</p>
+        <p>Horario de atención: Lunes a Viernes 9:00 AM - 7:00 PM</p>
+    </footer>
+
+    <!-- Conexión a los archivos JavaScript (cliente) -->
+    <script src="/js/api.js"></script>
+    <script src="/js/citas.js"></script>
+</body>
+</html>

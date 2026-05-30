@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>RPM Auto and Service - Concesionario de Autos</title>
+    <!-- CSS se conectará después -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- HEADER / NAVEGACIÓN PRINCIPAL                -->
+    <!-- ============================================ -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>🏎️ RPM Auto and Service</h1>
+                <p>Tu concesionario de confianza</p>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/" class="active">Inicio</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="/agendar-cita.html">Agendar Cita</a></li>
+                <li><a href="/registrar-venta.html">Registrar Venta</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <span id="userNameDisplay" class="user-name"></span>
+                <button id="logoutBtn" class="btn-logout" style="display:none;">Cerrar Sesión</button>
+                <button id="loginBtn" class="btn-login">Iniciar Sesión</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- BANNER PRINCIPAL (HERO SECTION)             -->
+    <!-- ============================================ -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Encuentra el auto de tus sueños</h2>
+            <p>Los mejores vehículos nuevos y seminuevos al mejor precio</p>
+            <div class="hero-buttons">
+                <a href="#catalogo" class="btn-principal">Ver Catálogo</a>
+                <a href="/agendar-cita.html" class="btn-secundario">Agendar Cita</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN DE CATÁLOGO DE VEHÍCULOS            -->
+    <!-- ============================================ -->
+    <section id="catalogo" class="catalogo">
+        <div class="container">
+            <h2>🚗 Nuestros Vehículos</h2>
+            <p class="subtitulo">Descubre nuestra selección de autos disponibles</p>
+            
+            <!-- Filtros de búsqueda -->
+            <div class="filtros">
+                <div class="filtro-group">
+                    <label for="filtroMarca">Marca:</label>
+                    <select id="filtroMarca">
+                        <option value="">Todas</option>
+                        <option value="Toyota">Toyota</option>
+                        <option value="Honda">Honda</option>
+                        <option value="Nissan">Nissan</option>
+                        <option value="Mazda">Mazda</option>
+                        <option value="Chevrolet">Chevrolet</option>
+                        <option value="Ford">Ford</option>
+                        <option value="Volkswagen">Volkswagen</option>
+                    </select>
+                </div>
+                
+                <div class="filtro-group">
+                    <label for="filtroPrecioMin">Precio mínimo:</label>
+                    <input type="number" id="filtroPrecioMin" placeholder="Mínimo" step="10000">
+                </div>
+                
+                <div class="filtro-group">
+                    <label for="filtroPrecioMax">Precio máximo:</label>
+                    <input type="number" id="filtroPrecioMax" placeholder="Máximo" step="10000">
+                </div>
+                
+                <div class="filtro-group">
+                    <label for="filtroAño">Año:</label>
+                    <select id="filtroAño">
+                        <option value="">Todos</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                    </select>
+                </div>
+                
+                <button id="btnFiltrar" class="btn-filtrar">🔍 Filtrar</button>
+                <button id="btnLimpiarFiltros" class="btn-limpiar">🗑️ Limpiar</button>
+            </div>
+            
+            <!-- Mostrar cantidad de vehículos encontrados -->
+            <div id="resultadoCount" class="resultado-count"></div>
+            
+            <!-- Grid de vehículos -->
+            <div id="vehiculosGrid" class="vehiculos-grid">
+                <div class="loading">Cargando vehículos...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN DE SERVICIOS                         -->
+    <!-- ============================================ -->
+    <section id="servicios" class="servicios">
+        <div class="container">
+            <h2>🔧 Nuestros Servicios</h2>
+            <p class="subtitulo">Ofrecemos mantenimiento y reparación especializada</p>
+            
+            <div class="servicios-grid">
+                <div class="servicio-card">
+                    <div class="servicio-icono">⚙️</div>
+                    <h3>Mantenimiento Preventivo</h3>
+                    <p>Cambio de aceite, filtros y revisión general</p>
+                </div>
+                
+                <div class="servicio-card">
+                    <div class="servicio-icono">🔧</div>
+                    <h3>Reparación de Motores</h3>
+                    <p>Diagnóstico y reparación de fallas mecánicas</p>
+                </div>
+                
+                <div class="servicio-card">
+                    <div class="servicio-icono">🛞</div>
+                    <h3>Alineación y Balanceo</h3>
+                    <p>Mantén tus llantas en perfecto estado</p>
+                </div>
+                
+                <div class="servicio-card">
+                    <div class="servicio-icono">🔌</div>
+                    <h3>Diagnóstico Electrónico</h3>
+                    <p>Revisión computarizada del vehículo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN DE POR QUÉ ELEGIRNOS                -->
+    <!-- ============================================ -->
+    <section class="ventajas">
+        <div class="container">
+            <h2>⭐ ¿Por qué elegir RPM Auto and Service?</h2>
+            
+            <div class="ventajas-grid">
+                <div class="ventaja">
+                    <div class="ventaja-numero">1</div>
+                    <h3>Garantía Extendida</h3>
+                    <p>Todos nuestros vehículos cuentan con garantía de 1 año o 20,000 km</p>
+                </div>
+                
+                <div class="ventaja">
+                    <div class="ventaja-numero">2</div>
+                    <h3>Financiamiento Fácil</h3>
+                    <p>Aprobación rápida con las mejores tasas del mercado</p>
+                </div>
+                
+                <div class="ventaja">
+                    <div class="ventaja-numero">3</div>
+                    <h3>Certificados por Expertos</h3>
+                    <p>Vehículos revisados y certificados por nuestros técnicos</p>
+                </div>
+                
+                <div class="ventaja">
+                    <div class="ventaja-numero">4</div>
+                    <h3>Servicio Post-Venta</h3>
+                    <p>Acompañamiento y asesoría después de tu compra</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN DE TESTIMONIOS                      -->
+    <!-- ============================================ -->
+    <section class="testimonios">
+        <div class="container">
+            <h2>💬 Lo que dicen nuestros clientes</h2>
+            
+            <div class="testimonios-grid">
+                <div class="testimonio-card">
+                    <p>"Excelente atención y servicio. Compré mi auto aquí y no pude estar más contento."</p>
+                    <div class="cliente">- Carlos Rodríguez</div>
+                    <div class="estrellas">★★★★★</div>
+                </div>
+                
+                <div class="testimonio-card">
+                    <p>"El proceso de compra fue muy sencillo y me ayudaron con el financiamiento."</p>
+                    <div class="cliente">- María González</div>
+                    <div class="estrellas">★★★★★</div>
+                </div>
+                
+                <div class="testimonio-card">
+                    <p>"El servicio de mantenimiento es de primera. Totalmente recomendados."</p>
+                    <div class="cliente">- Juan Pérez</div>
+                    <div class="estrellas">★★★★☆</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECCIÓN DE CONTACTO                          -->
+    <!-- ============================================ -->
+    <section id="contacto" class="contacto">
+        <div class="container">
+            <h2>📞 Contacto</h2>
+            <p class="subtitulo">Estamos para servirte</p>
+            
+            <div class="contacto-grid">
+                <div class="contacto-info">
+                    <div class="info-item">
+                        <span class="emoji">📍</span>
+                        <div>
+                            <h4>Dirección</h4>
+                            <p>Av. Principal #123, Colonia Centro<br>Ciudad de México</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="emoji">📱</span>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>(55) 1234-5678</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="emoji">✉️</span>
+                        <div>
+                            <h4>Email</h4>
+                            <p>ventas@rpmauto.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <span class="emoji">⏰</span>
+                        <div>
+                            <h4>Horario</h4>
+                            <p>Lunes a Viernes: 9:00 AM - 7:00 PM<br>Sábados: 10:00 AM - 2:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contacto-formulario">
+                    <h3>Envíanos un mensaje</h3>
+                    <form id="contactoForm">
+                        <input type="text" placeholder="Tu nombre" required>
+                        <input type="email" placeholder="Tu correo" required>
+                        <input type="tel" placeholder="Teléfono">
+                        <textarea rows="4" placeholder="Tu mensaje"></textarea>
+                        <button type="submit" class="btn-principal">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- MODAL DE INICIO DE SESIÓN                    -->
+    <!-- ============================================ -->
+    <div id="loginModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            
+            <form id="loginFormModal">
+                <div class="form-group">
+                    <label for="loginEmail">Correo electrónico</label>
+                    <input type="email" id="loginEmail" required placeholder="cliente@ejemplo.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Contraseña</label>
+                    <input type="password" id="loginPassword" required placeholder="Tu contraseña">
+                </div>
+                
+                <button type="submit" class="btn-principal">Ingresar</button>
+                
+                <p class="registro-link">
+                    ¿No tienes cuenta? <a href="#" id="showRegisterLink">Regístrate aquí</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- MODAL DE REGISTRO                            -->
+    <!-- ============================================ -->
+    <div id="registerModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Registrarse</h2>
+            
+            <form id="registerFormModal">
+                <div class="form-group">
+                    <label for="registerNombre">Nombre completo</label>
+                    <input type="text" id="registerNombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerEmail">Correo electrónico</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerTelefono">Teléfono</label>
+                    <input type="tel" id="registerTelefono">
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerPassword">Contraseña</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirmar contraseña</label>
+                    <input type="password" id="registerConfirmPassword" required>
+                </div>
+                
+                <button type="submit" class="btn-principal">Registrarse</button>
+                
+                <p class="login-link">
+                    ¿Ya tienes cuenta? <a href="#" id="showLoginLink">Inicia sesión aquí</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- FOOTER                                       -->
+    <!-- ============================================ -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RPM Auto and Service</h3>
+                    <p>Tu concesionario de confianza desde 2010</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Enlaces rápidos</h4>
+                    <ul>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="#catalogo">Catálogo</a></li>
+                        <li><a href="/agendar-cita.html">Agendar Cita</a></li>
+                        <li><a href="/registrar-venta.html">Registrar Venta</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 RPM Auto and Service - Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- SCRIPTS                                      -->
+    <!-- ============================================ -->
+    <script src="/js/api.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+</html>

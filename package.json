@@ -1,0 +1,57 @@
+{
+  "name": "rpm-auto-service",
+  "version": "1.0.0",
+  "description": "Sistema de gestión para concesionario de autos - RPM Auto and Service",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "dev:debug": "nodemon --inspect server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node scripts/seed.js",
+    "backup": "node scripts/backup.js",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "concesionario",
+    "autos",
+    "ventas",
+    "citas",
+    "mongodb",
+    "express",
+    "nodejs"
+  ],
+  "author": "RPM Auto and Service",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.0",
+    "cors": "^2.8.5",
+    "multer": "^1.4.5-lts.1",
+    "dotenv": "^16.3.1",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "express-validator": "^7.0.1",
+    "moment": "^2.29.4",
+    "uuid": "^9.0.1",
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tuusuario/rpm-auto-service"
+  },
+  "bugs": {
+    "url": "https://github.com/tuusuario/rpm-auto-service/issues"
+  },
+  "homepage": "https://github.com/tuusuario/rpm-auto-service#readme"
+}

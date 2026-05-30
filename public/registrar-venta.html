@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Registrar Venta - RPM Auto and Service</title>
+    <!-- CSS se conectará después -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Header / Navegación -->
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>RPM Auto and Service</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/catalogo">Catálogo</a></li>
+                <li><a href="/agendar-cita.html">Agendar Cita</a></li>
+                <li><a href="/registrar-venta.html" class="active">Registrar Venta</a></li>
+                <li><a href="/ventas-realizadas">Ventas Realizadas</a></li>
+                <li><a href="/perfil">Mi Perfil</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <span id="userNameDisplay"></span>
+                <button id="logoutBtn" style="display:none;">Cerrar Sesión</button>
+                <a href="/login.html" id="loginLink">Iniciar Sesión</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <section class="registrar-venta-section">
+            <h2>Registrar Nueva Venta</h2>
+            <p>Complete el formulario para registrar la venta de un vehículo. Valide el pago, calcule el total y adjunte el contrato.</p>
+
+            <!-- Formulario de registro de venta -->
+            <form id="registroVentaForm">
+                <!-- PASO 1: Seleccionar vehículo -->
+                <fieldset>
+                    <legend>Paso 1: Datos del Vehículo</legend>
+                    
+                    <div class="form-group">
+                        <label for="vehiculoId">Vehículo a vender *</label>
+                        <select id="vehiculoId" name="vehiculoId" required>
+                            <option value="">-- Selecciona un vehículo --</option>
+                            <!-- Los vehículos se cargarán dinámicamente desde el backend -->
+                        </select>
+                        <small>Selecciona el vehículo que se va a vender</small>
+                    </div>
+
+                    <div id="detalleVehiculo" style="display:none;">
+                        <div class="info-vehiculo">
+                            <h4>Detalles del vehículo seleccionado:</h4>
+                            <p id="vehiculoInfo"></p>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- PASO 2: Datos del cliente comprador -->
+                <fieldset>
+                    <legend>Paso 2: Datos del Comprador</legend>
+                    
+                    <div class="form-group">
+                        <label for="clienteNombre">Nombre completo del comprador *</label>
+                        <input type="text" id="clienteNombre" name="clienteNombre" required placeholder="Ej: Juan Pérez González">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clienteEmail">Correo electrónico *</label>
+                        <input type="email" id="clienteEmail" name="clienteEmail" required placeholder="cliente@ejemplo.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clienteTelefono">Teléfono de contacto *</label>
+                        <input type="tel" id="clienteTelefono" name="clienteTelefono" required placeholder="Ej: 555-1234567">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clienteDireccion">Dirección *</label>
+                        <input type="text" id="clienteDireccion" name="clienteDireccion" required placeholder="Calle, número, colonia, ciudad">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clienteRFC">RFC (opcional)</label>
+                        <input type="text" id="clienteRFC" name="clienteRFC" placeholder="Ej: PEGF850101XXX">
+                        <small>Opcional pero recomendado para facturación</small>
+                    </div>
+                </fieldset>
+
+                <!-- PASO 3: Información de la venta -->
+                <fieldset>
+                    <legend>Paso 3: Información de la Venta</legend>
+                    
+                    <div class="form-group">
+                        <label for="precioVehiculo">Precio del vehículo *</label>
+                        <input type="number" id="precioVehiculo" name="precioVehiculo" readonly style="background-color:#f0f0f0;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="impuestos">Impuestos (IVA 16%)</label>
+                        <input type="number" id="impuestos" name="impuestos" readonly style="background-color:#f0f0f0;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descuento">Descuento ($)</label>
+                        <input type="number" id="descuento" name="descuento" value="0" min="0" step="1000">
+                        <small>Si aplica algún descuento, ingrésalo aquí</small>
+                    </div>
+
+                    <div class="form-group total-destacado">
+                        <label for="totalVenta">TOTAL DE LA VENTA *</label>
+                        <input type="number" id="totalVenta" name="totalVenta" readonly style="background-color:#e8f0fe; font-weight:bold; font-size:1.2em;">
+                    </div>
+
+                    <button type="button" id="calcularTotalBtn" class="btn-secundario">Calcular Total</button>
+                </fieldset>
+
+                <!-- PASO 4: Método de pago -->
+                <fieldset>
+                    <legend>Paso 4: Método de Pago</legend>
+                    
+                    <div class="form-group">
+                        <label for="metodoPago">Método de pago *</label>
+                        <select id="metodoPago" name="metodoPago" required>
+                            <option value="">-- Selecciona un método --</option>
+                            <option value="efectivo">Efectivo</option>
+                            <option value="transferencia">Transferencia bancaria</option>
+                            <option value="tarjeta_credito">Tarjeta de crédito</option>
+                            <option value="tarjeta_debito">Tarjeta de débito</option>
+                            <option value="financiamiento">Financiamiento / Crédito</option>
+                        </select>
+                    </div>
+
+                    <!-- Campos específicos según método de pago -->
+                    <div id="pagoTransferencia" style="display:none;">
+                        <div class="form-group">
+                            <label for="referenciaPago">Número de referencia / Código de transferencia</label>
+                            <input type="text" id="referenciaPago" placeholder="Ej: REF-123456789">
+                        </div>
+                        <div class="form-group">
+                            <label for="bancoOrigen">Banco de origen</label>
+                            <input type="text" id="bancoOrigen" placeholder="Ej: BBVA, Santander, etc.">
+                        </div>
+                    </div>
+
+                    <div id="pagoTarjeta" style="display:none;">
+                        <div class="form-group">
+                            <label for="ultimosDigitos">Últimos 4 dígitos de la tarjeta</label>
+                            <input type="text" id="ultimosDigitos" maxlength="4" placeholder="Ej: 1234">
+                        </div>
+                        <div class="form-group">
+                            <label for="autorizacion">Código de autorización</label>
+                            <input type="text" id="autorizacion" placeholder="Ej: AUTH-123456">
+                        </div>
+                    </div>
+
+                    <div id="pagoFinanciamiento" style="display:none;">
+                        <div class="form-group">
+                            <label for="bancoFinanciamiento">Banco / Institución financiera</label>
+                            <input type="text" id="bancoFinanciamiento" placeholder="Ej: Banco del Bienestar">
+                        </div>
+                        <div class="form-group">
+                            <label for="numeroContrato">Número de contrato de financiamiento</label>
+                            <input type="text" id="numeroContrato" placeholder="Ej: FIN-2026-00123">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fechaPago">Fecha de pago *</label>
+                        <input type="date" id="fechaPago" name="fechaPago" required>
+                    </div>
+
+                    <button type="button" id="validarPagoBtn" class="btn-secundario">Validar Pago</button>
+                    <div id="validacionPagoMensaje" class="info-message" style="display:none;"></div>
+                </fieldset>
+
+                <!-- PASO 5: Contrato -->
+                <fieldset>
+                    <legend>Paso 5: Contrato de Compra-Venta</legend>
+                    
+                    <div class="form-group">
+                        <label for="contratoArchivo">Adjuntar contrato (PDF) *</label>
+                        <input type="file" id="contratoArchivo" name="contratoArchivo" accept=".pdf,.jpg,.png" required>
+                        <small>Formatos permitidos: PDF, JPG, PNG. Máximo 5MB</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="numeroContratoVenta">Número de contrato *</label>
+                        <input type="text" id="numeroContratoVenta" name="numeroContratoVenta" required placeholder="Ej: RPM-2026-00123">
+                        <small>Número único de identificación del contrato</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fechaFirma">Fecha de firma del contrato *</label>
+                        <input type="date" id="fechaFirma" name="fechaFirma" required>
+                    </div>
+
+                    <div class="form-group-checkbox">
+                        <input type="checkbox" id="contratoLeido" required>
+                        <label for="contratoLeido">Confirmo que el contrato ha sido revisado y firmado por ambas partes *</label>
+                    </div>
+                </fieldset>
+
+                <!-- Botones de acción -->
+                <div class="acciones-formulario">
+                    <button type="submit" id="registrarVentaBtn" class="btn-principal">Registrar Venta</button>
+                    <button type="button" id="limpiarFormularioBtn" class="btn-secundario">Limpiar Formulario</button>
+                </div>
+
+                <!-- Mensajes de error o éxito -->
+                <div id="mensajeError" class="error-message" style="display:none;"></div>
+                <div id="mensajeExito" class="success-message" style="display:none;"></div>
+            </form>
+
+            <!-- Resumen de la venta (aparece después de registrar) -->
+            <div id="resumenVenta" style="display:none;">
+                <h3>¡Venta Registrada Exitosamente!</h3>
+                <div id="resumenContenido"></div>
+                <button type="button" id="nuevaVentaBtn" class="btn-secundario">Registrar Nueva Venta</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 RPM Auto and Service - Todos los derechos reservados</p>
+        <p>Horario de atención: Lunes a Viernes 9:00 AM - 7:00 PM</p>
+    </footer>
+
+    <!-- Conexión a los archivos JavaScript -->
+    <script src="/js/api.js"></script>
+    <script src="/js/ventas.js"></script>
+</body>
+</html>

@@ -1,0 +1,1008 @@
+/* ============================================
+   styles.css - Estilos para RPM Auto and Service
+   ============================================
+   Este archivo contiene todos los estilos de la página:
+   - Diseño responsive (se adapta a celulares, tablets y computadoras)
+   - Colores: Rojo (RPM), blanco, gris
+   - Efectos hover (cuando pasas el mouse)
+   ============================================
+*/
+
+/* ============================================
+   1. RESET Y ESTILOS BASE
+   ============================================ */
+   
+/* Reset básico - elimina márgenes y paddings por defecto */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables de color (fáciles de cambiar) */
+:root {
+    --color-primario: #dc2626;     /* Rojo principal */
+    --color-primario-oscuro: #b91c1c; /* Rojo más oscuro */
+    --color-secundario: #1f2937;   /* Gris oscuro */
+    --color-gris-claro: #f3f4f6;   /* Fondo gris claro */
+    --color-gris: #9ca3af;         /* Gris medio */
+    --color-blanco: #ffffff;
+    --color-negro: #111827;
+    --sombra: 0 2px 8px rgba(0,0,0,0.1);
+    --sombra-hover: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Estilos base del cuerpo de la página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--color-negro);
+    background-color: var(--color-gris-claro);
+}
+
+/* Contenedor para centrar el contenido */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================
+   2. HEADER Y NAVEGACIÓN
+   ============================================ */
+
+header {
+    background-color: var(--color-blanco);
+    box-shadow: var(--sombra);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo h1 {
+    color: var(--color-primario);
+    font-size: 1.5rem;
+}
+
+.logo p {
+    font-size: 0.8rem;
+    color: var(--color-gris);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-secundario);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--color-primario);
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.user-name {
+    color: var(--color-primario);
+    font-weight: 500;
+}
+
+.btn-login, .btn-logout {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.btn-login {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: var(--color-primario-oscuro);
+}
+
+.btn-logout {
+    background-color: var(--color-gris);
+    color: white;
+}
+
+.btn-logout:hover {
+    background-color: var(--color-secundario);
+}
+
+/* ============================================
+   3. BOTONES PRINCIPALES
+   ============================================ */
+
+.btn-principal {
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-principal:hover {
+    background-color: var(--color-primario-oscuro);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-hover);
+}
+
+.btn-secundario {
+    background-color: transparent;
+    color: var(--color-primario);
+    border: 2px solid var(--color-primario);
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-secundario:hover {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+/* ============================================
+   4. HERO (BANNER PRINCIPAL)
+   ============================================ */
+
+.hero {
+    background: linear-gradient(135deg, var(--color-secundario) 0%, #374151 100%);
+    color: white;
+    padding: 4rem 20px;
+    text-align: center;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.hero-buttons .btn-secundario {
+    background-color: transparent;
+    border-color: white;
+    color: white;
+}
+
+.hero-buttons .btn-secundario:hover {
+    background-color: white;
+    color: var(--color-secundario);
+}
+
+/* ============================================
+   5. CATÁLOGO DE VEHÍCULOS
+   ============================================ */
+
+.catalogo {
+    padding: 4rem 20px;
+    background-color: var(--color-blanco);
+}
+
+.catalogo h2, .servicios h2, .ventajas h2, .testimonios h2, .contacto h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-secundario);
+}
+
+.subtitulo {
+    text-align: center;
+    color: var(--color-gris);
+    margin-bottom: 2rem;
+}
+
+/* Filtros */
+.filtros {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: var(--color-gris-claro);
+    border-radius: 12px;
+}
+
+.filtro-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.filtro-group label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-secundario);
+}
+
+.filtro-group select,
+.filtro-group input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.btn-filtrar, .btn-limpiar {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-top: 1.2rem;
+}
+
+.btn-filtrar {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.btn-limpiar {
+    background-color: var(--color-gris);
+    color: white;
+}
+
+.resultado-count {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--color-gris);
+    font-size: 0.9rem;
+}
+
+/* Grid de vehículos */
+.vehiculos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.vehiculo-card {
+    background-color: var(--color-blanco);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.vehiculo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-hover);
+}
+
+.vehiculo-imagen {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+}
+
+.vehiculo-info {
+    padding: 1.5rem;
+}
+
+.vehiculo-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-secundario);
+}
+
+.vehiculo-detalles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--color-gris);
+}
+
+.vehiculo-precio {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+}
+
+.vehiculo-acciones {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.vehiculo-acciones button {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.btn-ver-detalle {
+    background-color: var(--color-gris-claro);
+    color: var(--color-secundario);
+}
+
+.btn-ver-detalle:hover {
+    background-color: var(--color-gris);
+    color: white;
+}
+
+.btn-agendar-cita {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.btn-agendar-cita:hover {
+    background-color: var(--color-primario-oscuro);
+}
+
+.loading, .error, .sin-resultados {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+    color: var(--color-gris);
+}
+
+/* ============================================
+   6. SERVICIOS
+   ============================================ */
+
+.servicios {
+    padding: 4rem 20px;
+    background-color: var(--color-gris-claro);
+}
+
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.servicio-card {
+    background-color: var(--color-blanco);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: var(--sombra);
+    transition: transform 0.3s;
+}
+
+.servicio-card:hover {
+    transform: translateY(-5px);
+}
+
+.servicio-icono {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.servicio-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--color-secundario);
+}
+
+.servicio-card p {
+    color: var(--color-gris);
+}
+
+/* ============================================
+   7. VENTAJAS
+   ============================================ */
+
+.ventajas {
+    padding: 4rem 20px;
+    background-color: var(--color-blanco);
+}
+
+.ventajas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.ventaja {
+    text-align: center;
+}
+
+.ventaja-numero {
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-primario);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 1rem;
+}
+
+.ventaja h3 {
+    margin-bottom: 0.5rem;
+    color: var(--color-secundario);
+}
+
+.ventaja p {
+    color: var(--color-gris);
+}
+
+/* ============================================
+   8. TESTIMONIOS
+   ============================================ */
+
+.testimonios {
+    padding: 4rem 20px;
+    background-color: var(--color-gris-claro);
+}
+
+.testimonios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.testimonio-card {
+    background-color: var(--color-blanco);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+}
+
+.testimonio-card p {
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: var(--color-secundario);
+}
+
+.testimonio-card .cliente {
+    font-weight: bold;
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+}
+
+.testimonio-card .estrellas {
+    color: #fbbf24;
+    font-size: 1.2rem;
+}
+
+/* ============================================
+   9. CONTACTO
+   ============================================ */
+
+.contacto {
+    padding: 4rem 20px;
+    background-color: var(--color-blanco);
+}
+
+.contacto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.contacto-info {
+    background-color: var(--color-gris-claro);
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.info-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: flex-start;
+}
+
+.info-item .emoji {
+    font-size: 1.5rem;
+}
+
+.info-item h4 {
+    color: var(--color-secundario);
+    margin-bottom: 0.25rem;
+}
+
+.info-item p {
+    color: var(--color-gris);
+}
+
+.contacto-formulario {
+    background-color: var(--color-gris-claro);
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.contacto-formulario h3 {
+    margin-bottom: 1rem;
+    color: var(--color-secundario);
+}
+
+.contacto-formulario input,
+.contacto-formulario textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.contacto-formulario textarea {
+    resize: vertical;
+}
+
+/* ============================================
+   10. MODALES (Login y Registro)
+   ============================================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--color-blanco);
+    padding: 2rem;
+    border-radius: 16px;
+    max-width: 450px;
+    width: 90%;
+    position: relative;
+    animation: modalEntrada 0.3s ease;
+}
+
+@keyframes modalEntrada {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-grande {
+    max-width: 700px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-gris);
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--color-primario);
+}
+
+.modal-content h2 {
+    margin-bottom: 1.5rem;
+    color: var(--color-primario);
+    text-align: center;
+}
+
+.modal-content .form-group {
+    margin-bottom: 1rem;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+    color: var(--color-secundario);
+}
+
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    outline: none;
+    border-color: var(--color-primario);
+}
+
+.modal-content .btn-principal {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.registro-link, .login-link {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.registro-link a, .login-link a {
+    color: var(--color-primario);
+    text-decoration: none;
+}
+
+.registro-link a:hover, .login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Detalle del vehículo en modal */
+.detalle-contenido {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+    margin: 1rem 0;
+}
+
+.detalle-imagen {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    border-radius: 12px;
+}
+
+.detalle-info p {
+    margin-bottom: 0.5rem;
+}
+
+.detalle-acciones {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.detalle-acciones button {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.btn-agendar {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.btn-comprar {
+    background-color: #10b981;
+    color: white;
+}
+
+/* ============================================
+   11. FORMULARIOS (Citas y Ventas)
+   ============================================ */
+
+.agendar-cita-section,
+.registrar-venta-section {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--color-blanco);
+    border-radius: 16px;
+    box-shadow: var(--sombra);
+}
+
+.agendar-cita-section h2,
+.registrar-venta-section h2 {
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+}
+
+.agendar-cita-section p,
+.registrar-venta-section p {
+    color: var(--color-gris);
+    margin-bottom: 2rem;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+legend {
+    padding: 0 0.5rem;
+    font-weight: 600;
+    color: var(--color-primario);
+    font-size: 1.1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+    color: var(--color-secundario);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primario);
+}
+
+.form-group input[readonly] {
+    background-color: var(--color-gris-claro);
+    cursor: not-allowed;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--color-gris);
+}
+
+.form-group-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.form-group-checkbox input {
+    width: auto;
+}
+
+.total-destacado input {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #fef3c7;
+    border-color: #fbbf24;
+}
+
+.acciones-formulario {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+.error-message {
+    background-color: #fee2e2;
+    color: #dc2626;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border-left: 4px solid #dc2626;
+}
+
+.success-message {
+    background-color: #d1fae5;
+    color: #059669;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border-left: 4px solid #059669;
+}
+
+.info-message {
+    background-color: #dbeafe;
+    color: #2563eb;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* Resumen de cita/venta */
+#resumenCita, #resumenVenta {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #d1fae5;
+    border-radius: 12px;
+    border-left: 4px solid #059669;
+}
+
+#resumenCita h3, #resumenVenta h3 {
+    color: #059669;
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   12. FOOTER
+   ============================================ */
+
+footer {
+    background-color: var(--color-secundario);
+    color: white;
+    padding: 3rem 20px 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section h3, .footer-section h4 {
+    margin-bottom: 1rem;
+}
+
+.footer-section p {
+    opacity: 0.8;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.footer-section a:hover {
+    opacity: 1;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* ============================================
+   13. RESPONSIVE (Móviles y Tablets)
+   ============================================ */
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .nav-links {
+        justify-content: center;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .filtros {
+        flex-direction: column;
+    }
+    
+    .filtro-group {
+        width: 100%;
+    }
+    
+    .btn-filtrar, .btn-limpiar {
+        margin-top: 0;
+    }
+    
+    .detalle-contenido {
+        grid-template-columns: 1fr;
+    }
+    
+    .acciones-formulario {
+        flex-direction: column;
+    }
+    
+    .vehiculos-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .modal-content {
+        padding: 1.5rem;
+    }
+}
